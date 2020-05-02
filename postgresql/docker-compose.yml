@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    container_name: pgsandbox
+    image: postgres
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ${PWD}/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ${PWD}/scripts:/scripts
+      - ${PWD}/dumps:/tmp/dumps
+    ports:
+      - 5432:5432
+volumes:
+  pgdata:
+    driver: local
