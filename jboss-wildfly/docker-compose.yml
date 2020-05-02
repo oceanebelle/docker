@@ -1,0 +1,17 @@
+version: '3'
+services:
+  wildfly:
+    container_name: wildfly-jee
+    image: my/jboss/wildfly
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=postgres
+    volumes:
+      - ${PWD}/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ${PWD}/scripts:/scripts
+      - ${PWD}/deployments:/opt/jboss/wildfly/standalone/deployments
+      - ${PWD}/log:/opt/jboss/wildfly/standalone/log
+    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    ports:
+      - 7080:8080
+      - 9990:9990
