@@ -1,0 +1,14 @@
+version: '3'
+services:
+  artemis:
+    container_name: activemq-artemis
+    image: my/activemq-artemis
+    build:
+      context: .
+    restart: on-failure
+    volumes: 
+      - ${PWD}/config:/var/lib/artemis-instance/etc
+      - ${PWD}/log:/var/lib/artemis-instance/log
+    ports:
+      - 7161:8161
+      - 61616:61616
