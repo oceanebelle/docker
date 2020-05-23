@@ -2,7 +2,7 @@ version: '3'
 services:
   wildfly:
     container_name: wildfly-jee
-    image: oceanebelle/jboss-wildfly
+    image: oceanebelle/docker:latest-jboss-wildfly
     build:
       context: .
     restart: on-failure

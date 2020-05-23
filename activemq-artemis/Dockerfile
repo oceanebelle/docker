@@ -1,4 +1,4 @@
-FROM my/openjdk
+FROM oceanebelle/docker:latest-openjdk
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /opt
