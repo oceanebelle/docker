@@ -1,5 +1,4 @@
 # PostgresSQL
-test
 
 # Running via docker-compose and the docker-compose.yml
 
