@@ -64,4 +64,17 @@ $  docker-compose stop && docker-compose rm -f &&  docker-compose up -d && docke
 $ docker-compose exec postgres bash /scripts/initdb.sh
 ```
 
+# Docker command for building and troubleshooting images
+
+> build an image in a directory with ``Dockerfile``
+
+```
+docker build --tag=oceanebelle/image .
+```
+
+> inspecting a built container
+
+```
+$ docker run --rm -P --name pg_test oceanebelle/image
+```
 

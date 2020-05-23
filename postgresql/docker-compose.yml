@@ -2,7 +2,7 @@ version: '3'
 services:
   postgres:
     container_name: pgsandbox
-    image: postgres
+    image: oceanebelle/postgresql
     restart: on-failure
     environment:
       - POSTGRES_USER=postgres
