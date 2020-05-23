@@ -2,10 +2,13 @@ version: '3'
 services:
   wildfly:
     container_name: wildfly-jee
-    image: my/jboss/wildfly
+    image: oceanebelle/jboss-wildfly
+    build:
+      context: .
     restart: on-failure
     environment:
-      - POSTGRES_USER=postgres
+      - WILDFLY_USER=admin
+      - WILDLFY_PASS=admin
     volumes:
       - ${PWD}/postgresql.conf:/etc/postgresql/postgresql.conf
       - ${PWD}/scripts:/scripts

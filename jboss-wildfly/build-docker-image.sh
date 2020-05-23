@@ -2,4 +2,4 @@
 
 set -eo
 
-docker build --tag=my/jboss/wildfly .
+docker build --tag=oceanebelle/jboss-wildfly .

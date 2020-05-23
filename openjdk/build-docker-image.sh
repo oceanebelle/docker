@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-docker build --tag=my/openjdk - < Dockerfile-ubuntu
+docker build --tag=oceanebelle/openjdk - < Dockerfile-ubuntu

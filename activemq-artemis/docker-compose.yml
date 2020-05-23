@@ -2,7 +2,7 @@ version: '3'
 services:
   artemis:
     container_name: activemq-artemis
-    image: my/activemq-artemis
+    image: oceanebelle/activemq-artemis
     build:
       context: .
     restart: on-failure
