@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-docker build --tag=oceanebelle/postgresql .
+docker build --no-cache  --tag=oceanebelle/postgresql .
