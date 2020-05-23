@@ -22,9 +22,9 @@ Sandbox for various dockerized containers used in day to day development.
 
 - activemq-artemis
 
-![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/jboss-wildfly)
-![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/jboss-wildfly)
-![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/jboss-wildfly)
+![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/activemq-artemis)
+![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/activemq-artemis)
+![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/activemq-artemis)
 
 
 # Running via docker-compose and the docker-compose.yml
