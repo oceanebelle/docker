@@ -59,6 +59,11 @@ Other way
 docker run --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
 ```
 
+Running in interactive mode
+```
+docker run -it --rm -P --name pg_test -p 5432:5432 oceanebelle/postgresql
+```
+
 # When connected to the postgres container ie bash, run the following
 ```
 psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB"

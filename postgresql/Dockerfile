@@ -5,7 +5,9 @@ ENV POSTGRES_PASSWORD postgres
 ENV POSTGRES_DB postgres
 ENV PGDATA /var/lib/postgresql/data
 
+# Helper scripts and a default config that allows remote connections
 COPY ./scripts /scripts
+COPY ./postgresql.conf /etc/postgresql/postgresql.conf
 
 # Expose the PostgreSQL port
 EXPOSE 5432
