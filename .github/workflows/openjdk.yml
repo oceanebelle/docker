@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
+    paths: 
+    - 'openjdk/**'
     paths-ignore:
     - '**.md'
   pull_request:
@@ -17,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: build openjdk
       uses: docker/build-push-action@v1.1.0
@@ -26,6 +28,6 @@ jobs:
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
         repository: oceanebelle/openjdk
         tags: latest
-        path: ${{ GITHUB_WORKSPACE }}/openjdk
+        path: openjdk
         dockerfile: Dockerfile
         push: false
