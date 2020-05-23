@@ -8,7 +8,9 @@ function restoreDatabase() {
 
 psql --username ${POSTGRES_USER} --dbname ${dbname} < $filename
 
+echo "Restored $dbname successfully"
+
 }
 
 # the sql dumps are found in this location within the container.
-restoreDatabase $1 /tmp/dumps/$2
+restoreDatabase $1 $2

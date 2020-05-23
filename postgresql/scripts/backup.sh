@@ -4,10 +4,13 @@ set -e
 function dumpDatabase() {
 
   local dbname=$1
-  local dumpdt=`date +%Y%m%d-%H%M%S`
+  local dumpdt=`date +%Y%m%d`
 
 
-  pg_dump -U $POSTGRES_USER $dbname > /tmp/dumps/${dbname}_${dumpdt}.sql
+  local backup_file=/dumps/${dbname}_${dumpdt}.sql
+  pg_dump -U $POSTGRES_USER $dbname > $backup_file
+
+  echo "Created backup in $backup_file"
 
 }
 

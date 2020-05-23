@@ -15,4 +15,4 @@ CREATE_DB_EOF
 
 }
 
-createDatabase test3 abc
+createDatabase $1 $2

@@ -1,8 +1,8 @@
 version: '3'
 services:
   postgres:
-    container_name: pgsandbox
-    image: oceanebelle/postgresql
+    container_name: postgrespi
+    image: oceanebelle/postgresql:12-arm32v7
     restart: on-failure
     environment:
       - POSTGRES_USER=postgres
@@ -10,12 +10,10 @@ services:
       - PGDATA=/var/lib/postgresql/data
       - POSTGRES_DB=postgres
     volumes:
-      - pgsandbox:/var/lib/postgresql/data
-      - ${PWD}/postgresql.conf:/etc/postgresql/postgresql.conf
-      - ${PWD}/scripts:/scripts
+      - postgrespi:/var/lib/postgresql/data
       - ${PWD}/dumps:/dumps
     ports:
       - 5432:5432
 volumes:
-  pgsandbox:
+  postgrespi:
     driver: local
