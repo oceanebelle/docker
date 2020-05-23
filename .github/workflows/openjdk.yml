@@ -23,4 +23,4 @@ jobs:
         repository: oceanebelle/openjdk
         tags: latest
         dockerfile: openjdk/Dockerfile
-        push: false
+        push: true
