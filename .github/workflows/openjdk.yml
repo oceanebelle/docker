@@ -1,7 +1,7 @@
 name: Openjdk build docker image
 
 on:
-  push:
+  pull_request:
     branches: [ master ]
     paths: 
     - 'openjdk/**'
@@ -23,7 +23,6 @@ jobs:
         repository: oceanebelle/openjdk
         tags: latest
         dockerfile: openjdk/Dockerfile
-        add_git_labels: true
-        labels: org.opencontainers.image.documentation=https://raw.githubusercontent.com/oceanebelle/docker/master/openjdk/README.md
+        add_git_labels: false
         push: true
 
