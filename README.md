@@ -72,9 +72,9 @@ $ docker-compose exec postgres bash /scripts/initdb.sh
 docker build --tag=oceanebelle/image .
 ```
 
-> inspecting a built container
+> inspecting a built container, by running interactive bash
 
 ```
-$ docker run --rm -P --name pg_test oceanebelle/image
+docker run -it --rm -P --name test_image oceanebelle/image bash
 ```
 

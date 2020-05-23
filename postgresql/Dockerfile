@@ -1,9 +1,11 @@
-FROM postgres
+FROM postgres:12
 
 ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD postgres
 ENV POSTGRES_DB postgres
 ENV PGDATA /var/lib/postgresql/data
+
+COPY ./scripts /scripts
 
 # Expose the PostgreSQL port
 EXPOSE 5432
