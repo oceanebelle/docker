@@ -23,12 +23,7 @@ jobs:
         repository: oceanebelle/openjdk
         tags: latest
         dockerfile: openjdk/Dockerfile
+        add_git_labels: true
+        labels: org.opencontainers.image.documentation=https://raw.githubusercontent.com/oceanebelle/docker/master/openjdk/README.md
         push: true
 
-    - name: Docker Hub update description
-      uses: peter-evans/dockerhub-description@v2.1.1
-      env:
-        DOCKERHUB_USERNAME: ${{ secrets.DOCKER_ID }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-        DOCKERHUB_REPOSITORY: oceanebelle/openjdk
-        README_FILEPATH: ./openjdk/README.md
