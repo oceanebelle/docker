@@ -22,6 +22,5 @@ jobs:
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
         repository: oceanebelle/openjdk
         tags: latest
-        path: openjdk
-        dockerfile: Dockerfile
+        dockerfile: openjdk/Dockerfile
         push: false
