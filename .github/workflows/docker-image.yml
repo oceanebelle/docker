@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: docker/build-push-action@v1.1.0
-    - name: Build openjdk
-      with:
-        username: ${{ secrets.DOCKER_ID }}
-        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
-        repository: oceaenbelle/openjdk
-        path: /openjdk
-        dockerfile: Dockerfile
-        push: false
+      - name: build open jdk
+      - uses: docker/build-push-action@v1.1.0
+        with:
+          username: ${{ secrets.DOCKER_ID }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+          repository: oceaenbelle/openjdk
+          path: /openjdk
+          dockerfile: Dockerfile
+          push: false
