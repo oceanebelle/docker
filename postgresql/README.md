@@ -1,3 +1,8 @@
+![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/postgresql)
+![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/postgresql)
+![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/postgresql)
+
+
 # PostgresSQL
 
 # Running via docker-compose and the docker-compose.yml

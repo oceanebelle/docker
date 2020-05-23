@@ -1,3 +1,7 @@
+![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/jboss-wildfly)
+![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/jboss-wildfly)
+![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/jboss-wildfly)
+
 # Build the my/jboss/wildfly image
 $ ./build-docker-image.sh
 
