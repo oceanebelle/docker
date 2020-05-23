@@ -1,10 +1,10 @@
-name: build openjdk image
+name: build activemq-artemis image
 
 on:
   pull_request:
     branches: [ master ]
     paths: 
-    - 'openjdk/**'
+    - 'activemq-artemis/**'
 
 jobs:
 
@@ -15,14 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build and push openjdk
+    - name: build and push activemq-artemis
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_ID }}
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
-        repository: oceanebelle/openjdk
+        repository: oceanebelle/activemq-artemis
         tags: latest
-        dockerfile: openjdk/Dockerfile
+        dockerfile: activemq-artemis/Dockerfile
         add_git_labels: false
         push: true
 
