@@ -1,8 +1,6 @@
 
-![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/openjdk)
-![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/openjdk)
-![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/openjdk)
+![Openjdk build docker image](https://github.com/oceanebelle/docker/workflows/Openjdk%20build%20docker%20image/badge.svg?branch=master&event=push)
 
 
 # OpenJDK
-Building a custom image for java
+Building a custom image for jdk
