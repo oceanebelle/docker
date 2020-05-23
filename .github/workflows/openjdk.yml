@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build openjdk
+    - name: build and upload openjdk image to dockerhub
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_ID }}
@@ -24,3 +24,11 @@ jobs:
         tags: latest
         dockerfile: openjdk/Dockerfile
         push: true
+
+    - name: Docker Hub update description
+      uses: peter-evans/dockerhub-description@v2.1.1
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKER_ID }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+        DOCKERHUB_REPOSITORY: oceanebelle/openjdk
+        README_FILEPATH: ./openjdk/README.md
