@@ -27,6 +27,9 @@ Sandbox for various dockerized containers used in day to day development.
 ![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/activemq-artemis)
 
 
+![diagram](./diagram.drawio.svg)
+
+
 # Running via docker-compose and the docker-compose.yml
 
 > to start in the background

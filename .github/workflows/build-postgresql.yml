@@ -1,0 +1,72 @@
+name: build postgresql image
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths: 
+    - 'postgresql/**'
+    - '!**.svg'
+    - '!**.md'
+
+jobs:
+
+  build-image:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        image: [postgresql]
+        arch: [amd64, arm]
+
+    env:
+      IMAGE: ${{matrix.image}}
+      IMAGE_PATH: ${{matrix.image}}
+      REPOSITORY: oceanebelle/${{matrix.image}}
+      DOCKER_USER: ${{ secrets.DOCKER_ID }}
+      DOCKER_PASS: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+      DOCKER_ARM_TAG: 12-arm32v7
+      DOCKER_ARM_PLATFORM: linux/arm/v7
+      IMAGE_TAG: preview
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build and push ${{matrix.image}}
+      id: build-preview
+      if: ${{matrix.arch == 'amd64'}}
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.DOCKER_ID }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+        repository: ${{ env.REPOSITORY }}
+        tags: ${{ env.IMAGE_TAG }}
+        path: ${{ env.IMAGE_PATH }}
+        dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
+        add_git_labels: false
+        push: true
+
+    - name: setup docker buildx
+      id: buildx
+      if: ${{matrix.arch == 'arm'}}
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        buildx-version: latest
+        qemu-version: latest
+
+    - name: Docker Login   
+      id: buildx-login   
+      if: ${{steps.buildx.outcome == 'success'}}
+      run: |        
+        echo "${DOCKER_PASS}" | docker login --username "${DOCKER_USER}" --password-stdin  
+
+    - name: Run Buildx (push image) for arm32v7     
+      if: ${{steps.buildx-login.outcome == 'success'}}
+      run: |        
+        docker buildx build \
+          --platform ${DOCKER_ARM_PLATFORM} \
+          --tag ${REPOSITORY}:${DOCKER_ARM_TAG} \
+          --push \
+          -f Dockerfile-arm32v7 .
+      working-directory: ./${{env.IMAGE_PATH}}
+

@@ -1,0 +1,41 @@
+name: build openjdk image
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths: 
+    - 'openjdk/**'
+    - '!**.svg'
+    - '!**.md'
+
+jobs:
+
+  build-image:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        image: [openjdk]
+
+    env:
+      IMAGE: ${{matrix.image}}
+      IMAGE_PATH: ${{matrix.image}}
+      REPOSITORY: oceanebelle/${{matrix.image}}
+      IMAGE_TAG: preview
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: build and push ${{matrix.image}}
+      uses: docker/build-push-action@v1.1.0
+      with:
+        username: ${{ secrets.DOCKER_ID }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+        repository: ${{ env.REPOSITORY }}
+        tags: ${{ env.IMAGE_TAG }}
+        path: ${{ env.IMAGE_PATH }}
+        dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
+        add_git_labels: false
+        push: true
+
