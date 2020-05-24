@@ -56,12 +56,12 @@ jobs:
 
     - name: Docker Login   
       id: buildx-login   
-      if: ${{steps.buildx.outcome == success}}
+      if: ${{steps.buildx.outcome == 'success'}}
       run: |        
         echo "${DOCKER_PASS}" | docker login --username "${DOCKER_USER}" --password-stdin  
 
     - name: Run Buildx (push image) for arm32v7     
-      if: ${{steps.buildx-login.outcome == success}}
+      if: ${{steps.buildx-login.outcome == 'success'}}
       run: |        
         docker buildx build \
           --platform ${DOCKER_ARM_PLATFORM} \
