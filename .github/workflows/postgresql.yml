@@ -51,6 +51,7 @@ jobs:
         docker buildx build \
          --platform ${DOCKER_TARGET_PLATFORM} \
          --tag ${DOCKER_IMAGE}:arm32v7 \
+         --push \
          -f Dockerfile-arm32v7 .
       working-directory: ./postgresql
 
