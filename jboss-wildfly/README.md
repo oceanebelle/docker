@@ -1,3 +1,5 @@
+![Openjdk build docker image](https://github.com/oceanebelle/docker/workflows/Openjdk%20build%20docker%20image/badge.svg?branch=master&event=push)
+
 ![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/jboss-wildfly)
 ![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/jboss-wildfly)
 ![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/jboss-wildfly)
