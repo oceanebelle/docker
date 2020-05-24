@@ -1,12 +1,105 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="101px" height="101px" viewBox="-0.5 -0.5 101 101" content="&lt;mxfile host=&quot;&quot; modified=&quot;2020-05-24T10:15:34.103Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36&quot; etag=&quot;g_2JE-k8Ie9tMQedbp2Z&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;jZNNb4MwDIZ/DdcKyPp1XFm3HTZpUg87p2AgWoJRcFu6X7+EJAVUVRoHlDyvHccfiVim+jfN2/oTC5BRGhd9xF6iNF09MfO34OrAculBpUXhUDKCg/gFD2NPT6KAbmZIiJJEO4c5Ng3kNGNca7zMzUqU86gtr+AOHHIu7+m3KKh2dJOuR/4OoqpD5GS1dYriwdhn0tW8wMsEsX3EMo1IbqX6DKStXaiL83t9oN4upqGh/zikzuHM5cnn5u9F15DsGTQJk/sHP4L8wk6QwMZIRyRCFbFdMHiWorICYWtoTUqaTWKWJsnWHqb6yo7D4sg7kS86JSSYAdiVQsoMJeohHgOWb+LYupHGH5gou3i7HJQSG5rwcvhcIFdNa+QzM5eD/mF1klvNzawCKiB9NSbeIV37NoU59dvL2PQk9qyeNjxA7getuh099sIsfDvCdmz7oE3eDtv/AQ==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="223px" height="259px" viewBox="-0.5 -0.5 223 259" content="&lt;mxfile host=&quot;&quot; modified=&quot;2020-05-24T13:30:42.759Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.45.1 Chrome/78.0.3904.130 Electron/7.2.4 Safari/537.36&quot; etag=&quot;pOdjIfa5xjjSrgEkubCn&quot; version=&quot;13.1.3&quot;&gt;&lt;diagram id=&quot;6hGFLwfOUW9BJ-s0fimq&quot; name=&quot;Page-1&quot;&gt;1ZfLjpswFIafhuVI8YXbsiSkXbRSpVl07YIBzxjMGGdI+vQ1YCDIk1EXaUJYIPzb59g+n39ZOGhbHr9KUhc/REq5Azfp0UE7B8LQx/rdCadBcH13EHLJ0kECs/DM/lAjbox6YCltFgOVEFyxeikmoqpoohYakVK0y2GZ4MtZa5JTS3hOCLfVXyxVxaAG0J/1b5TlxTgz8MKhpyTjYLOTpiCpaM8kFDtoK4VQw1d53FLe1W6syxC3v9A7LUzSSv1TgIl4J/xgNidqWr2kr2Z96jRuWi+17j5lX9FIikOV0i4N0K22YIo+1yTpRrQautYKVXLTPW1z0zWUFK90K7iQWqlEpWOijHE+Sg5EHo6iWFcjIjIx/FEXm4lKmTbAXS49Javy7zTrtovhOMQsG5j2WeZ9/3SZOcsrrfE+NjJ1oFLR48ViggmRPtpUlFTJkx5iAlwD1ZxqZJrtfERAaLTi7HhgoxFzKvMp8QxOfxh2FzhCiyO4SFCHaqd0Va+pZHouKmf15yydVxt+VNpPsOpKZ/1jswUbH4XxFDE6CNuspgwjq0ST6Fd2BVpwSQvatLwPYHnXgIUsWLVoVC5p88bv67t9sEXBg/sudG/oO2yhhGv13R6GCKzOd4FN67/5zrVgvfwWTfPUMp5m/HRn622COACPbT3g3fLO8yycaK3e+xJjgODavAfcG156vkWLJIq90/Ltiegtlay5r//cnb8Pw8f2nxZu6L/AIorX6j+IMHZ3a/PfdCNd33+6Of9F9n1nv+Io/gs=&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <ellipse cx="50" cy="50" rx="50" ry="50" fill="#e3c800" stroke="#b09500" pointer-events="all"/>
-        <path d="M 11.22 55.1 C 11.22 70.32 28.58 82.65 50 82.65 C 71.42 82.65 88.78 70.32 88.78 55.1" fill="none" stroke="#b09500" stroke-width="2.04" stroke-miterlimit="10" pointer-events="all"/>
-        <rect x="0" y="0" width="0" height="0" fill="none" stroke="#b09500" pointer-events="all"/>
-        <path d="M 16.33 52.04 L 6.12 58.16" fill="#e3c800" stroke="#b09500" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 83.67 52.04 L 93.88 58.16" fill="#e3c800" stroke="#b09500" stroke-miterlimit="10" pointer-events="all"/>
-        <ellipse cx="27.55" cy="35.71" rx="3.0612244897959187" ry="8.16326530612245" fill="#e3c800" stroke="#b09500" stroke-width="6.12" pointer-events="all"/>
-        <ellipse cx="72.45" cy="35.71" rx="3.0612244897959187" ry="8.16326530612245" fill="#e3c800" stroke="#b09500" stroke-width="6.12" pointer-events="all"/>
+        <rect x="32" y="12" width="190" height="40" rx="12" ry="12" fill="#64bbe2" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 32px; margin-left: 76px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                openjdk
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="76" y="36" fill="#FFFFFF" font-family="Helvetica" font-size="14px" font-weight="bold">
+                    openjdk
+                </text>
+            </switch>
+        </g>
+        <ellipse cx="32" cy="32" rx="30" ry="30" fill="#10739e" stroke="#ffffff" stroke-width="4" pointer-events="all"/>
+        <g fill="#ffffff" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="22px">
+            <text x="31.5" y="41.5">
+                1
+            </text>
+        </g>
+        <rect x="32" y="77" width="190" height="40" rx="12" ry="12" fill="#f8c382" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 97px; margin-left: 76px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                postgresql
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="76" y="101" fill="#FFFFFF" font-family="Helvetica" font-size="14px" font-weight="bold">
+                    postgresql
+                </text>
+            </switch>
+        </g>
+        <ellipse cx="32" cy="97" rx="30" ry="30" fill="#f2931e" stroke="#ffffff" stroke-width="4" pointer-events="all"/>
+        <g fill="#ffffff" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="22px">
+            <text x="31.5" y="106.5">
+                2
+            </text>
+        </g>
+        <rect x="32" y="142" width="190" height="40" rx="12" ry="12" fill="#f08e81" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 162px; margin-left: 76px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                jboss-wildfly
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="76" y="166" fill="#FFFFFF" font-family="Helvetica" font-size="14px" font-weight="bold">
+                    jboss-wildfly
+                </text>
+            </switch>
+        </g>
+        <ellipse cx="32" cy="162" rx="30" ry="30" fill="#ae4132" stroke="#ffffff" stroke-width="4" pointer-events="all"/>
+        <g fill="#ffffff" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="22px">
+            <text x="31.5" y="171.5">
+                3
+            </text>
+        </g>
+        <rect x="32" y="207" width="190" height="40" rx="12" ry="12" fill="#5d7f99" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 146px; height: 1px; padding-top: 227px; margin-left: 76px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 14px; font-family: Helvetica; color: #FFFFFF; line-height: 1.2; pointer-events: all; font-weight: bold; white-space: normal; word-wrap: normal; ">
+                                activemq-artemis
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="76" y="231" fill="#FFFFFF" font-family="Helvetica" font-size="14px" font-weight="bold">
+                    activemq-artemis
+                </text>
+            </switch>
+        </g>
+        <ellipse cx="32" cy="227" rx="30" ry="30" fill="#23445d" stroke="#ffffff" stroke-width="4" pointer-events="all"/>
+        <g fill="#ffffff" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="22px">
+            <text x="31.5" y="236.5">
+                4
+            </text>
+        </g>
     </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
 </svg>
