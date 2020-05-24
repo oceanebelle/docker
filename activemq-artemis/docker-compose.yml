@@ -10,5 +10,5 @@ services:
       - ${PWD}/config:/var/lib/artemis-instance/etc
       - ${PWD}/log:/var/lib/artemis-instance/log
     ports:
-      - 7161:8161
+      - 8161:8161
       - 61616:61616

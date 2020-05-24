@@ -1,6 +1,8 @@
-FROM ubuntu:18.04
+FROM --platform=$BUILDPLATFORM ubuntu:18.04
 
-FROM oceanebelle/openjdk
+ARG BUILDPLATFORM
+
+FROM --platform=$BUILDPLATFORM oceanebelle/openjdk:developer
 
 ENV ARTEMIS_USER artemis
 ENV ARTEMIS_PASS artemis
