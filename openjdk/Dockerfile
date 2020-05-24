@@ -7,10 +7,10 @@ VOLUME /log
 RUN mkdir /app
 VOLUME /app
 
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /docker-entrypoint-javaapp.sh
 
 # Default runner
-ENTRYPOINT ["/bin/sh", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/docker-entrypoint-javaapp.sh"]
 
 # Default parameter sent to entrypoint
 CMD ["PRINT_VERSION"]

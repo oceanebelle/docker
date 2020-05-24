@@ -3,18 +3,18 @@ FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS buil
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
-RUN mkdir /log
-RUN echo "Running on ${BUILDPLATFORM} target ${TARGETPLATFORM}" >> /log/build.log
-VOLUME /log
+RUN mkdir /logs
+RUN echo "Running on ${BUILDPLATFORM} target ${TARGETPLATFORM}" >> /logs/build.log
+VOLUME /logs
 
 # Location for application files
 RUN mkdir /app
 VOLUME /app
 
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /docker-entrypoint-javaapp.sh
 
 # Default runner
-ENTRYPOINT ["/bin/sh", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/docker-entrypoint-javaapp.sh"]
 
 # Default parameter sent to entrypoint
 CMD ["PRINT_VERSION"]

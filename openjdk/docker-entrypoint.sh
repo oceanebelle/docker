@@ -12,7 +12,7 @@ case $ACTION in
     java)
           echo "Running java command: $@"
           command="$@"
-          eval $command
+          exec "$command"
           ;;
     *)
           env

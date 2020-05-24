@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        image: [openjdk, jboss-wildfly, activemq-artemis, postgresql]
+        image: [openjdk, jboss-wildfly, activemq-artemis, postgresql, zookeeper]
 
     env:
       IMAGE: ${{matrix.image}}

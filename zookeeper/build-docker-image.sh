@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-# preview image built on github action workflows
+# build latest locally
+# docker build -t oceanebelle/zookeeper .
 
-docker build --no-cache  --tag=oceanebelle/zookeeper .
+# builds multiple architectures for the developer tag and upload to dockerhub
+docker buildx build --platform linux/amd64,linux/arm/v7 --no-cache -t oceanebelle/zookeeper:developer --push -f Dockerfile.developer .
