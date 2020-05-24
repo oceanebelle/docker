@@ -22,6 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
         repository: oceanebelle/activemq-artemis
         tags: latest
+        path: activemq-artemis
         dockerfile: activemq-artemis/Dockerfile
         add_git_labels: false
         push: true
