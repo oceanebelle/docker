@@ -21,7 +21,7 @@ jobs:
       IMAGE: ${{matrix.image}}
       IMAGE_PATH: ${{matrix.image}}
       REPOSITORY: oceanebelle/${{matrix.image}}
-      IAMGE_TAG: latest
+      IMAGE_TAG: latest
 
     steps:
     - uses: actions/checkout@v2
@@ -31,10 +31,10 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_ID }}
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
-        repository: ${REPOSITORY}
-        tags: ${IMAGE_TAG}
-        path: ${IMAGE_PATH}
-        dockerfile: ${IMAGE_PATH}/Dockerfile
+        repository: ${{ env.REPOSITORY }}
+        tags: ${{ env.IMAGE_TAG }}
+        path: ${{ env.IMAGE_PATH }}
+        dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
         add_git_labels: false
         push: true
 
