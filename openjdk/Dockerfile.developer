@@ -1,7 +1,11 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS build
+FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS build
 
-RUN mkdir /log
-VOLUME /log
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+RUN mkdir /logs
+RUN echo "Running on ${BUILDPLATFORM} target ${TARGETPLATFORM}" >> /logs/build.log
+VOLUME /logs
 
 # Location for application files
 RUN mkdir /app

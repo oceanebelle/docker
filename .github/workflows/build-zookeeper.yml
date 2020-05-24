@@ -1,18 +1,13 @@
-name: Build and Push latest images
+name: build zookeeper image
 
 on:
-  push:
-    branches: [ master ]
-    paths: 
-    - '**'  
-    - '!**.svg'
-    - '!**.md'
-
   pull_request:
     branches: [ master ]
     paths: 
-    - '**/workflows/**/build-all-latest-image.yml'
-
+    - 'zookeeper/**'
+    - '**/workflows/**/build-zookeeper.yml'
+    - '!**.svg'
+    - '!**.md'
 
 jobs:
 
@@ -22,13 +17,13 @@ jobs:
 
     strategy:
       matrix:
-        image: [openjdk, jboss-wildfly, activemq-artemis, postgresql, zookeeper]
+        image: [zookeeper]
 
     env:
       IMAGE: ${{matrix.image}}
       IMAGE_PATH: ${{matrix.image}}
       REPOSITORY: oceanebelle/${{matrix.image}}
-      IMAGE_TAG: latest
+      IMAGE_TAG: preview
 
     steps:
     - uses: actions/checkout@v2
@@ -43,5 +38,4 @@ jobs:
         path: ${{ env.IMAGE_PATH }}
         dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
         add_git_labels: false
-        push: true  
-
+        push: true
