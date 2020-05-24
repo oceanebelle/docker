@@ -52,9 +52,7 @@ jobs:
         docker buildx build \       
          --platform ${{ steps.prepare.outputs.docker_platform }} \        
          --tag ${DOCKER_IMAGE}:${{ steps.prepare.outputs.version }} \        
-         --file Dockerfile-arm32v7 \        
-         --push \
-         --output "type=image,push=true" .
+         --file Dockerfile-arm32v7 .
 
     - name: build and push postgresql
       uses: docker/build-push-action@v1.1.0
