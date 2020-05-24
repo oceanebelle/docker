@@ -1,3 +1,19 @@
-FROM adoptopenjdk:11-jdk-openj9-bionic
+FROM --platform=$BUILDPLATFORM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS build
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
-CMD ["/bin/sh", "-c", "java --version"]
+RUN mkdir /log
+RUN echo "Running on ${BUILDPLATFORM} target ${TARGETPLATFORM}" >> /log/build.log
+VOLUME /log
+
+# Location for application files
+RUN mkdir /app
+VOLUME /app
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+
+# Default runner
+ENTRYPOINT ["/bin/sh", "/docker-entrypoint.sh"]
+
+# Default parameter sent to entrypoint
+CMD ["PRINT_VERSION"]

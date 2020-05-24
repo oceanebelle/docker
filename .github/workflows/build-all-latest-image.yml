@@ -8,35 +8,51 @@ on:
     - '!**.svg'
     - '!**.md'
 
+  pull_request:
+    branches: [ master ]
+    paths: 
+    - '**/workflows/**/build-all-latest-image.yml'
+
 jobs:
 
-  build-all:
+  build-multi-arch-latest:
 
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 2
       matrix:
         image: [openjdk, jboss-wildfly, activemq-artemis, postgresql]
 
     env:
-      IMAGE: ${{matrix.image}}
-      IMAGE_PATH: ${{matrix.image}}
+      IMAGE: ${{ matrix.image }}
+      IMAGE_PATH: ${{ matrix.image }}
       REPOSITORY: oceanebelle/${{matrix.image}}
+      DOCKER_USER: ${{ secrets.DOCKER_ID }}
+      DOCKER_PASS: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+      DOCKER_PLATFORM: linux/amd64,linux/arm/v7
       IMAGE_TAG: latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: build and push ${{matrix.image}}
-      uses: docker/build-push-action@v1.1.0
+    - name: setup docker buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
       with:
-        username: ${{ secrets.DOCKER_ID }}
-        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
-        repository: ${{ env.REPOSITORY }}
-        tags: ${{ env.IMAGE_TAG }}
-        path: ${{ env.IMAGE_PATH }}
-        dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
-        add_git_labels: false
-        push: true
+        buildx-version: latest
+        qemu-version: latest
 
+    - name: Docker Login   
+      id: buildx-login   
+      if: ${{ steps.buildx.outcome == 'success' }}
+      run: |        
+        echo "${DOCKER_PASS}" | docker login --username "${DOCKER_USER}" --password-stdin  
+
+    - name: Run Buildx (push image) for arm32v7     
+      if: ${{ steps.buildx-login.outcome == 'success' }}
+      run: |        
+        docker buildx build \
+          --platform ${DOCKER_PLATFORM} \
+          --tag ${REPOSITORY}:${IMAGE_TAG} \
+          --push .
+      working-directory: ./${{env.IMAGE_PATH}}        
