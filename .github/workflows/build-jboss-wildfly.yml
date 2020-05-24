@@ -5,7 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'jboss-wildfly/**'
-    - '**/workflows/**/build*.yml'
+    - '**/workflows/**/build-jboss-wildfly.yml'
     - '!**.svg'
     - '!**.md'
 

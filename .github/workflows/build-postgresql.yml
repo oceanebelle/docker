@@ -5,7 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'postgresql/**'
-    - '**/workflows/**/build*.yml'
+    - '**/workflows/**/build-postgresql.yml'
     - '!**.svg'
     - '!**.md'
 
@@ -34,7 +34,6 @@ jobs:
 
     - name: build and push ${{matrix.image}}
       id: build-preview
-      if: ${{matrix.arch == 'amd64'}}
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_ID }}
