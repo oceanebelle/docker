@@ -16,8 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-<<<<<<< HEAD
-=======
     - name: setup docker buildx
       id: buildx
       uses: crazy-max/ghaction-docker-buildx@v1
@@ -50,7 +48,6 @@ jobs:
          --file ./postgresql/Dockerfile-arm32v7 \        
          --output "type=image,push=true" ./postgresql
 
->>>>>>> aff555d... github action
     - name: build and push postgresql
       uses: docker/build-push-action@v1.1.0
       with:
