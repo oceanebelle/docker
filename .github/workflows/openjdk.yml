@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'openjdk/**'
+    - '!openjdk/**.md'
 
 jobs:
 
