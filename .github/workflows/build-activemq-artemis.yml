@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'activemq-artemis/**'
+    - '**/workflows/**/build-activemq-artemis.yml'
     - '!**.svg'
     - '!**.md'
 

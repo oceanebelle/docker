@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'openjdk/**'
+    - '**/workflows/**/build-openjdk.yml'
     - '!**.svg'
     - '!**.md'
 
