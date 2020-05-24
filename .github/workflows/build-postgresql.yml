@@ -68,5 +68,5 @@ jobs:
           --tag ${REPOSITORY}:${DOCKER_ARM_TAG} \
           --push \
           -f Dockerfile-arm32v7 .
-      working-directory: ./${IMAGE_PATH}
+      working-directory: ./${{env.IMAGE_PATH}}
 
