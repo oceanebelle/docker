@@ -1,5 +1,5 @@
 
-![Openjdk build docker image](https://github.com/oceanebelle/docker/workflows/Openjdk%20build%20docker%20image/badge.svg?branch=master&event=push)
+![build openjdk image](https://github.com/oceanebelle/docker/workflows/build%20openjdk%20image/badge.svg)
 
 
 # OpenJDK
