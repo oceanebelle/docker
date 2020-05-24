@@ -7,6 +7,6 @@ Docker Hub
 ![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/zookeeper)
 ![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/zookeeper)
 
-# OpenJDK
+# Zookeeper
 Building a custom image for zookeeper
 
