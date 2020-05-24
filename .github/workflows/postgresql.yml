@@ -16,6 +16,41 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+<<<<<<< HEAD
+=======
+    - name: setup docker buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        buildx-version: latest
+        qemu-version: latest
+    
+    - name: Available platforms
+      run: echo ${{ steps.buildx.outputs.platforms }}
+
+    - name: Prepare      
+      if: success()      
+      id: prepare      
+      run: |        
+        echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
+        echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
+        echo ::set-output name=version::arm32v7
+
+    - name: Docker Login      
+      if: success()      
+      run: |        
+        echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} --username "${DOCKER_USERNAME}" --password-stdin  
+
+    - name: Run Buildx (push image) for arm32v7     
+      if: success()
+      run: |        
+        docker buildx build \       
+         --platform ${{ steps.prepare.outputs.docker_platform }} \        
+         --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \        
+         --file ./postgresql/Dockerfile-arm32v7 \        
+         --output "type=image,push=true" ./postgresql
+
+>>>>>>> aff555d... github action
     - name: build and push postgresql
       uses: docker/build-push-action@v1.1.0
       with:

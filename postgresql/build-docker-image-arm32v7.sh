@@ -8,3 +8,5 @@ set -e
 # To enable experimental linux, add to ~/.docker/config.json the key value pair: "experimental" : "enabled"
 # To view all architectures: docker buildx ls
 docker buildx build --platform linux/arm/v7 --no-cache --tag=oceanebelle/postgresql:12-arm32v7 -f Dockerfile-arm32v7 .
+
+#N.B. github actions for pull requests has been enabled
