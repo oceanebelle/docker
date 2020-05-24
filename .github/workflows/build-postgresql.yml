@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'postgresql/**'
+    - '**/workflows/**/build*.yml'
     - '!**.svg'
     - '!**.md'
 
@@ -17,7 +18,6 @@ jobs:
     strategy:
       matrix:
         image: [postgresql]
-        arch: [amd64, arm]
 
     env:
       IMAGE: ${{matrix.image}}
@@ -46,9 +46,30 @@ jobs:
         add_git_labels: false
         push: true
 
+  build-arm:
+
+    needs: build-image
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        image: [postgresql]
+
+    env:
+      IMAGE: ${{matrix.image}}
+      IMAGE_PATH: ${{matrix.image}}
+      REPOSITORY: oceanebelle/${{matrix.image}}
+      DOCKER_USER: ${{ secrets.DOCKER_ID }}
+      DOCKER_PASS: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+      DOCKER_ARM_PLATFORM: linux/arm/v7
+      IMAGE_TAG: 12-arm32v7
+
+    steps:
+    - uses: actions/checkout@v2
+
     - name: setup docker buildx
       id: buildx
-      if: ${{matrix.arch == 'arm'}}
       uses: crazy-max/ghaction-docker-buildx@v1
       with:
         buildx-version: latest
@@ -65,8 +86,7 @@ jobs:
       run: |        
         docker buildx build \
           --platform ${DOCKER_ARM_PLATFORM} \
-          --tag ${REPOSITORY}:${DOCKER_ARM_TAG} \
+          --tag ${REPOSITORY}:${IMAGE_TAG} \
           --push \
           -f Dockerfile-arm32v7 .
       working-directory: ./${{env.IMAGE_PATH}}
-
