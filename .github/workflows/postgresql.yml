@@ -10,6 +10,12 @@ on:
 jobs:
 
   build:
+    env: 
+      DOCKER_REGISTRY: docker.io
+      DOCKER_IMAGE: oceanebelle/postgresql      
+      DOCKER_USERNAME: ${{ secrets.DOCKER_ID }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+      DOCKER_TARGET_PLATFORM: linux/arm/v7
 
     runs-on: ubuntu-latest
 
