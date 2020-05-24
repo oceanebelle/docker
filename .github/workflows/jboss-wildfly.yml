@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths: 
     - 'jboss-wildfly/**'
+    - '!jboss-wildfly/**.md'
 
 jobs:
 
@@ -22,6 +23,7 @@ jobs:
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
         repository: oceanebelle/jboss-wildfly
         tags: latest
+        path: jboss-wildfly
         dockerfile: jboss-wildfly/Dockerfile
         add_git_labels: false
         push: true

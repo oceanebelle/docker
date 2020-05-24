@@ -1,3 +1,5 @@
+![postgresql build docker image](https://github.com/oceanebelle/docker/workflows/Openjdk%20build%20docker%20image/badge.svg?branch=master&event=push)
+
 ![Docker Build](https://img.shields.io/docker/cloud/automated/oceanebelle/postgresql)
 ![Docker Build](https://img.shields.io/docker/cloud/build/oceanebelle/postgresql)
 ![Docker Pulls](https://img.shields.io/docker/pulls/oceanebelle/postgresql)
