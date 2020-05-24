@@ -12,11 +12,46 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DOCKER_REGISTRY: docker.io
+      DOCKER_IMAGE: oceanebelle/postgresql      
+      DOCKER_USERNAME: ${{ secrets.DOCKER_ID }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
+      DOCKER_TARGET_PLATFORM: linux/arm/v7
 
     steps:
     - uses: actions/checkout@v2
 
+    - name: setup docker buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
+
+    - name: Prepare      
+      if: success()      
+      id: prepare      
+      run: |        
+        echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
+        echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
+        echo ::set-output name=version::arm32v7
+
+    - name: Docker Login      
+      if: success()      
+      run: |        
+        echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} --username "${DOCKER_USERNAME}" --password-stdin  
+
+    - name: Run Buildx (push image) for arm32v7     
+      if: success()
+      working-directory: ./postgresql      
+      run: |        
+        docker buildx build \       
+         --platform ${{ steps.prepare.outputs.docker_platform }} \        
+         --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \        
+         --file ./Dockerfile-arm32v7 \        
+         --output type=image,push=true .
+
     - name: build and push postgresql
+      if: success()
       uses: docker/build-push-action@v1.1.0
       with:
         username: ${{ secrets.DOCKER_ID }}
