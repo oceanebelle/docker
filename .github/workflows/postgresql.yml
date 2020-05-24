@@ -47,12 +47,14 @@ jobs:
 
     - name: Run Buildx (push image) for arm32v7     
       if: success()
+      working-directory: postgresql
       run: |        
         docker buildx build \       
          --platform ${{ steps.prepare.outputs.docker_platform }} \        
-         --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \        
-         --file ./postgresql/Dockerfile-arm32v7 \        
-         --output "type=image,push=true" ./postgresql
+         --tag ${DOCKER_IMAGE}:${{ steps.prepare.outputs.version }} \        
+         --file Dockerfile-arm32v7 \        
+         --push \
+         --output "type=image,push=true" .
 
     - name: build and push postgresql
       uses: docker/build-push-action@v1.1.0
