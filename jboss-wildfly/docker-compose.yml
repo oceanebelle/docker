@@ -10,10 +10,9 @@ services:
       - WILDFLY_USER=admin
       - WILDLFY_PASS=admin
     volumes:
-      - ${PWD}/scripts:/scripts
       - ${PWD}/deployments:/opt/jboss/wildfly/standalone/deployments
       - ${PWD}/log:/opt/jboss/wildfly/standalone/log
-    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+      - ${PWD}/scripts/conf:/opt/jboss/wildfly/standalone/configuration
     ports:
       - 8080:8080
       - 9990:9990
