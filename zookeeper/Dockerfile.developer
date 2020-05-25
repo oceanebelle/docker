@@ -24,21 +24,6 @@ RUN set -eux; \
     mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" "$ZOO_LOG_DIR"; \
     chown zookeeper:zookeeper "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" "$ZOO_LOG_DIR"
 
-# Install required packges
-RUN set -eux; \
-    apt-get update; \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        dirmngr \
-        gosu \
-        gnupg \
-        netcat \
-        wget; \
-    rm -rf /var/lib/apt/lists/*; \
-# Verify that gosu binary works
-    gosu nobody true
-
 ARG SHORT_DISTRO_NAME=zookeeper-3.6.1
 ARG DISTRO_NAME=apache-zookeeper-3.6.1-bin
 
