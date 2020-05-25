@@ -23,7 +23,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        image: [openjdk, jboss-wildfly, activemq-artemis, postgresql, zookeeper]
+        image: [openjdk, jboss-wildfly, activemq-artemis, postgresql, zookeeper, kafka]
 
     env:
       IMAGE: ${{matrix.image}}
