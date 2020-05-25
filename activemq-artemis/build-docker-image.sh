@@ -3,4 +3,5 @@ set -e
 
 # Images are built using github actions
 image=$(basename $PWD)
-docker buildx build --platform linux/arm/v7,linux/amd64 --build-arg BUILD_TAG=developer --pull --no-cache -t "oceanebelle/${image}:developer" --push .
+tag=${1:-developer}
+docker buildx build --platform linux/arm/v7,linux/amd64 --build-arg TAG=${tag} --pull --no-cache -t "oceanebelle/${image}:${tag}" --push .

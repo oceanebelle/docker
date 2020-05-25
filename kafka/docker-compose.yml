@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  zookeeper:
+    container_name: zookeeper-messaging
+    image: "oceanebelle/zookeeper:${DOCKER_TAG}"
+    restart: on-failure    
+    volumes:
+      - ${PWD}/conf/zoo.cfg:/opt/apache/zookeeper/conf/zoo.cfg
+      - ${PWD}/.zk_data:/opt/apache/zookeeper/data
+      - ${PWD}/.zk_data_log:/opt/apache/zookeeper/datalog
+      - ${PWD}/logs:/opt/apache/zookeeper/logs
+    ports:
+      - 2181:2181
+      - 2888:2888 
+      - 3888:3888 
+      - 8080:8080
+
+  kafka:
+    container_name: kafka-messaging
+    image: "oceanebelle/kafka:${DOCKER_TAG}"    
+    restart: on-failure
+    volumes:
+      - ${PWD}/scripts:/opt/apache/kafka/config
+      - ${PWD}/.kafka-data:/opt/apache/kafka/kafka-data
+      - ${PWD}/logs:/opt/apache/kafka/logs    
+    ports:
+      - 9092:9092

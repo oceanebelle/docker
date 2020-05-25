@@ -12,3 +12,9 @@
 
 Building a custom image for kafka
 
+## Running kafka using docker
+
+```bash
+docker run -it --rm --network host oceanebelle/kafka
+```
+

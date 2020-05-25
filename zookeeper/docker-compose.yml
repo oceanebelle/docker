@@ -1,17 +1,18 @@
 version: '3'
 services:
   zookeeper:
-    container_name: zookeeper-dev
+    container_name: zookeeper
     image: "oceanebelle/zookeeper:${DOCKER_TAG}"
-    restart: on-failure
-    environment:
-      - WILDFLY_USER=admin
-      - WILDLFY_PASS=admin
+    build:
+      context: .
+    restart: on-failure    
     volumes:
-      - ${PWD}/conf:/conf
-      - ${PWD}/logs:/logs
+      - ${PWD}/conf:/opt/apache/zookeeper/conf
+      - ${PWD}/logs:/opt/apache/zookeeper/logs
     ports:
       - 2181:2181
       - 2888:2888 
       - 3888:3888 
       - 8080:8080
+
+      

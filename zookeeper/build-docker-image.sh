@@ -6,4 +6,5 @@ set -e
 
 # builds multiple architectures for the developer tag and upload to dockerhub
 image=$(basename $PWD)
-docker buildx build --platform linux/arm/v7,linux/amd64 --pull --no-cache -t "oceanebelle/${image}:developer" --push -f Dockerfile.developer .
+tag=${1:-developer}
+docker buildx build --platform linux/arm/v7,linux/amd64 --build-arg TAG=${tag} --pull --no-cache -t "oceanebelle/${image}:${tag}" --push .
