@@ -1,16 +1,38 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS build
 
-RUN mkdir /log
-VOLUME /log
+ENV APP_HOME=/opt/app \
+    APP_LOG=/opt/app/log \
+    APP_LIB=/opt/app/lib \
+    PATH=$PATH:/opt/app
 
-# Location for application files
-RUN mkdir /app
-VOLUME /app
+# Install required packges
+RUN set -eux; \
+    apt-get update; \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        dirmngr \
+        gosu \
+        gnupg \
+        netcat \
+        curl \
+        wget; \
+    rm -rf /var/lib/apt/lists/*; \
+# Verify that gosu binary works
+    gosu nobody true
+
+
+# Setup app locations and permissions
+RUN set eux; \
+    mkdir -p ${APP_HOME}; \
+    mkdir -p ${APP_LOG}}; \
+    mkdir -p ${APP_LIB}; \
+    chmod -R 777 ${APP_HOME}
+
+
+VOLUME ["$APP_HOME", "${APP_LOG}", "${APP_LIB}"]
 
 COPY ./docker-entrypoint.sh /docker-entrypoint-javaapp.sh
 
-# Default runner
-ENTRYPOINT ["/bin/sh", "/docker-entrypoint-javaapp.sh"]
-
-# Default parameter sent to entrypoint
-CMD ["PRINT_VERSION"]
+# Default command when run
+CMD ["/docker-entrypoint-javaapp.sh", "PRINT_VERSION"]
