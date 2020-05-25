@@ -17,8 +17,8 @@ RUN getent group
 RUN set -eux; \ 
     groupadd -r artemis --gid=1000; \
     useradd -r -g artemis --uid=1000 artemis; \
-    mkdir -p "$ARTEMIS_INSTANCE_DIR";  \
-    chown artemis:artemis "$ARTEMIS_INSTANCE_DIR"
+    mkdir -p "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log";  \
+    chown artemis:artemis "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log"
 
 # Install required packges
 RUN set -eux; \
@@ -64,7 +64,7 @@ COPY ./scripts /
 
 USER ${ARTEMIS_USER}
 
-VOLUME ["$ARTEMIS_INSTANCE_DIR"]
+VOLUME ["$ARTEMIS_INSTANCE_DIR", "$ARTEMIS_INSTANCE_DIR/etc", "$ARTEMIS_INSTANCE_DIR/log"]
 WORKDIR $ARTEMIS_INSTANCE_DIR
 
 ENTRYPOINT ["/start-artemis.sh"]

@@ -1,45 +1,54 @@
+
 # docker
-> Git Hub Actions 
 
 ![Build and Push latest images](https://github.com/oceanebelle/docker/workflows/Build%20and%20Push%20latest%20images/badge.svg)
 
-# Diagram
+## Diagram
 
 ![diagram](./diagram.drawio.svg)
 
-# Running via docker-compose and the docker-compose.yml
+## Running via docker-compose and the docker-compose.yml
 
 > to start in the background
-```
-$ docker-compose up -d
+
+```docker
+docker-compose up -d
 ```
 
-> to stop 
-```
-$ docker-compose stop
+> to stop
+
+```docker
+docker-compose stop
 ```
 
 > remove the container
+
+```docker
+docker-compose rm -f
 ```
-$ docker-compose rm -f
-```
+
 > follow logs
-```
-$ docker-compose logs -f
+
+```docker
+docker-compose logs -f
 ```
 
 > Quick stop, rm, start and then connect via exec bash
-```
-$  docker-compose stop && docker-compose rm -f &&  docker-compose up -d && docker-compose exec postgres bash
+
+```docker
+docker-compose stop && docker-compose rm -f &&  docker-compose up -d && docker-compose exec postgres bash
 ```
 
 > Use exec command to execute scripts against the postgres service
-```
-$ docker-compose exec postgres bash /scripts/initdb.sh
+
+```docker
+docker-compose exec postgres bash /scripts/initdb.sh
 ```
 
-# Using docker cli to build an image
+## Using docker cli to build an image
+
 > manage docker artifacts
+
 ```docker
 # list all running docker containers
 docker ps -a
@@ -49,10 +58,9 @@ docker container prune -f
 docker image prune -a -f
 ```
 
-
 > build an image in a directory with ``Dockerfile``
 
-```
+```docker
 docker build --tag=oceanebelle/image .
 ```
 
@@ -63,8 +71,8 @@ docker build --tag=oceanebelle/image .
 docker run -it --rm -P --name test_image --entrypoint bash oceanebelle/openjdk
 ```
 
+## Setting up local docker environment for multi architecture build
 
-# Setting up local docker environment for multi architecture build
 > Enable experimental option to use buildx
 
 ```docker
@@ -76,6 +84,7 @@ docker run -it --rm -P --name test_image --entrypoint bash oceanebelle/openjdk
 ```
 
 > Setup docker builder and buildx
+
 ```docker
 # list all context
 docker context ls
@@ -104,5 +113,3 @@ docker buildx build --platform linux/amd64,linux/arm/v7 .
 docker buildx rm multibuilder
 
 ```
-
-
