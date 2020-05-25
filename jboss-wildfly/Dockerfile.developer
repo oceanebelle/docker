@@ -1,6 +1,8 @@
-FROM ubuntu:18.04
+FROM --platform=$BUILDPLATFORM ubuntu:18.04
 
-FROM oceanebelle/openjdk
+ARG BUILDPLATFORM
+
+FROM --platform=$BUILDPLATFORM oceanebelle/openjdk:developer
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION=19.0.0.Final \
