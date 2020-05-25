@@ -1,4 +1,15 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.7_10-slim AS build
+ARG TAG=latest
+ARG UBUNTU_VERSION=18.04
+ARG JDK_VERSION=openjdk11
+ARG JDK_TAG=jdk-11.0.7_10-slim
+FROM ubuntu:${UBUNTU_VERSION} as osbuild
+FROM adoptopenjdk/$JDK_VERSION:$JDK_TAG AS jdkbuild
+
+ARG TAG
+ARG JDK_VERSION
+ARG JDK_TAG
+ARG UBUNTU_VERSION
+
 
 ENV APP_HOME=/opt/app \
     APP_LOG=/opt/app/log \
@@ -11,24 +22,23 @@ RUN set -eux; \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
         ca-certificates \
+        curl \
         dirmngr \
         gosu \
         gnupg \
         netcat \
-        curl \
+        net-tools \
         wget; \
     rm -rf /var/lib/apt/lists/*; \
 # Verify that gosu binary works
     gosu nobody true
 
-
 # Setup app locations and permissions
 RUN set eux; \
-    mkdir -p ${APP_HOME}; \
-    mkdir -p ${APP_LOG}}; \
-    mkdir -p ${APP_LIB}; \
-    chmod -R 777 ${APP_HOME}
+    mkdir -p "${APP_HOME}" "${APP_LOG}" "${APP_LIB}"; \
+    chmod -R 777 ${APP_HOME} ${APP_LOG} ${APP_LIB}
 
+RUN echo "Building image for $TAG using adoptopenjdk/$JDK_VERSION:$JDK_TAG on ubuntu/$UBUNTU_VERSION" > $APP_LOG/build-jdk.out    
 
 VOLUME ["$APP_HOME", "${APP_LOG}", "${APP_LIB}"]
 

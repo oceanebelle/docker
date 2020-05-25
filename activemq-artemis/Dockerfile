@@ -1,6 +1,7 @@
+ARG BUILD_TAG=latest
 FROM ubuntu:18.04
-
-FROM oceanebelle/openjdk
+ARG BUILD_TAG
+FROM oceanebelle/openjdk:${BUILD_TAG}
 
 ENV ARTEMIS_USER artemis
 ENV ARTEMIS_PASS artemis
@@ -19,22 +20,6 @@ RUN set -eux; \
     useradd -r -g artemis --uid=1000 artemis; \
     mkdir -p "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log";  \
     chown artemis:artemis "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log"
-
-# Install required packges
-RUN set -eux; \
-    apt-get -y update; \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        dirmngr \
-        gosu \
-        gnupg \
-        netcat \
-        curl \
-        wget; \
-    rm -rf /var/lib/apt/lists/*; \
-# Verify that gosu binary works
-    gosu nobody true
 
 # Download Artemis
 RUN set -eux; \

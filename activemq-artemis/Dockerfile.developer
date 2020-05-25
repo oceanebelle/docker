@@ -22,22 +22,6 @@ RUN set -eux; \
     mkdir -p "$ARTEMIS_INSTANCE_DIR";  \
     chown artemis:artemis "$ARTEMIS_INSTANCE_DIR"
 
-# Install required packges
-RUN set -eux; \
-    apt-get -y update; \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        dirmngr \
-        gosu \
-        gnupg \
-        netcat \
-        curl \
-        wget; \
-    rm -rf /var/lib/apt/lists/*; \
-# Verify that gosu binary works
-    gosu nobody true
-
 # Download Artemis
 RUN set -eux; \
     mkdir -p /opt ; \
