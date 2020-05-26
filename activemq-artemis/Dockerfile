@@ -1,17 +1,16 @@
-FROM ubuntu:18.04
+ARG TAG=latest
+FROM oceanebelle/openjdk:$TAG
 
-FROM oceanebelle/openjdk
-
-ENV ARTEMIS_USER artemis
-ENV ARTEMIS_PASS artemis
-ENV ANONYMOUS_LOGIN False
-ENV ARTEMIS_VERSION 2.12.0
-ENV ARTEMIS apache-artemis-$ARTEMIS_VERSION
-ENV ARTEMIS_HOME /opt/activemq-artemis
-ENV ARTEMIS_INSTANCE_DIR /var/lib/artemis-instance
-ENV CREATE_ARGUMENTS --user ${ARTEMIS_USER} --password ${ARTEMIS_PASSWORD} --allow-anonymous ${ANONYMOUS_LOGIN} --silent --http-host 0.0.0.0 --relax-jolokia
-
-RUN getent group
+ENV \
+  ARTEMIS_USER=artemis \
+  ARTEMIS_PASS=artemis \
+  ANONYMOUS_LOGIN=False \
+  ARTEMIS_VERSION="2.12.0" 
+ENV \
+  ARTEMIS="apache-artemis-$ARTEMIS_VERSION" \
+  ARTEMIS_HOME="/opt/activemq-artemis" \
+  ARTEMIS_INSTANCE_DIR="/var/lib/artemis-instance" \
+  CREATE_ARGUMENTS="--user ${ARTEMIS_USER} --password ${ARTEMIS_PASS} --allow-anonymous ${ANONYMOUS_LOGIN} --silent --http-host 0.0.0.0 --relax-jolokia"
 
 # add user and group for artemis
 RUN set -eux; \ 
@@ -19,22 +18,6 @@ RUN set -eux; \
     useradd -r -g artemis --uid=1000 artemis; \
     mkdir -p "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log";  \
     chown artemis:artemis "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log"
-
-# Install required packges
-RUN set -eux; \
-    apt-get -y update; \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        dirmngr \
-        gosu \
-        gnupg \
-        netcat \
-        curl \
-        wget; \
-    rm -rf /var/lib/apt/lists/*; \
-# Verify that gosu binary works
-    gosu nobody true
 
 # Download Artemis
 RUN set -eux; \

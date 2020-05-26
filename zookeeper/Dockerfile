@@ -1,11 +1,13 @@
-FROM ubuntu:18.04
+ARG TAG=latest
+FROM oceanebelle/openjdk:$TAG
 
-FROM oceanebelle/openjdk
+ENV ZOO_HOME=/opt/apache/zookeeper \
+    ZOO_ROOT=/opt/apache
 
-ENV ZOO_CONF_DIR=/conf \
-    ZOO_DATA_DIR=/data \
-    ZOO_DATA_LOG_DIR=/datalog \
-    ZOO_LOG_DIR=/logs \
+ENV ZOO_CONF_DIR=${ZOO_HOME}/conf \
+    ZOO_DATA_DIR=${ZOO_HOME}/data \
+    ZOO_DATA_LOG_DIR=${ZOO_HOME}/datalog \
+    ZOO_LOG_DIR=${ZOO_HOME}/logs \
     ZOO_TICK_TIME=2000 \
     ZOO_INIT_LIMIT=5 \
     ZOO_SYNC_LIMIT=2 \
@@ -19,8 +21,8 @@ ENV ZOO_CONF_DIR=/conf \
 RUN set -eux; \
     groupadd -r zookeeper --gid=1000; \
     useradd -r -g zookeeper --uid=1000 zookeeper; \
-    mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" "$ZOO_LOG_DIR"; \
-    chown zookeeper:zookeeper "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" "$ZOO_LOG_DIR"
+    mkdir -p "${ZOO_ROOT}"; \
+    chown zookeeper:zookeeper "${ZOO_ROOT}"
 
 ARG SHORT_DISTRO_NAME=zookeeper-3.6.1
 ARG DISTRO_NAME=apache-zookeeper-3.6.1-bin
@@ -47,19 +49,27 @@ RUN set -eux; \
     }; \
     ddist "$DISTRO_NAME.tar.gz" "zookeeper/$SHORT_DISTRO_NAME/$DISTRO_NAME.tar.gz"; \
     export GNUPGHOME="$(mktemp -d)"; \
-    tar -zxf "$DISTRO_NAME.tar.gz"; \
-    mv "$DISTRO_NAME/conf/"* "$ZOO_CONF_DIR"; \
+    tar -zxf "$DISTRO_NAME.tar.gz" -C ${ZOO_ROOT} ; \
+    mv ${ZOO_ROOT}/${DISTRO_NAME} "${ZOO_HOME}"; \    
     rm -rf "$GNUPGHOME" "$DISTRO_NAME.tar.gz";  \
-    chown -R zookeeper:zookeeper "/$DISTRO_NAME"
+    chown -R zookeeper:zookeeper "$ZOO_HOME"
 
-WORKDIR $DISTRO_NAME
-VOLUME ["$ZOO_DATA_DIR", "$ZOO_DATA_LOG_DIR", "$ZOO_LOG_DIR", "${ZOO_CONF_DIR}"]
+RUN mkdir -p "${ZOO_DATA_DIR}" "${ZOO_DATA_LOG_DIR}" "${ZOO_LOG_DIR}"; \
+    chown -R zookeeper:zookeeper "${ZOO_HOME}"
 
-EXPOSE 2181 2888 3888 8080
+WORKDIR $ZOO_HOME
 
-ENV PATH=$PATH:/$DISTRO_NAME/bin \
+EXPOSE \ 
+    2181 \
+    2888 \
+    3888 \
+    8080
+
+ENV PATH=$PATH:$ZOO_HOME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
+VOLUME ["${ZOO_CONF_DIR}", "${ZOO_DATA_DIR}", "${ZOO_DATA_LOG_DIR}", "${ZOO_LOG_DIR}"]    
+USER zookeeper
 COPY docker-entrypoint.sh /docker-entrypoint-zookeeper.sh
 ENTRYPOINT ["/docker-entrypoint-zookeeper.sh"]
 CMD ["zkServer.sh", "start-foreground"]

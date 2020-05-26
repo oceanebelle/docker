@@ -34,9 +34,10 @@ jobs:
         username: ${{ secrets.DOCKER_ID }}
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}  
         repository: ${{ env.REPOSITORY }}
+        build_args: TAG=${{ env.IMAGE_TAG }}
         tags: ${{ env.IMAGE_TAG }}
         path: ${{ env.IMAGE_PATH }}
         dockerfile: ${{ env.IMAGE_PATH }}/Dockerfile
         add_git_labels: false
         push: true
-
+   

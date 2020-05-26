@@ -11,37 +11,37 @@
 
 > to start in the background
 
-```docker
+```bash
 docker-compose up -d
 ```
 
 > to stop
 
-```docker
+```bash
 docker-compose stop
 ```
 
 > remove the container
 
-```docker
+```bash
 docker-compose rm -f
 ```
 
 > follow logs
 
-```docker
+```bash
 docker-compose logs -f
 ```
 
 > Quick stop, rm, start and then connect via exec bash
 
-```docker
+```bash
 docker-compose stop && docker-compose rm -f &&  docker-compose up -d && docker-compose exec postgres bash
 ```
 
 > Use exec command to execute scripts against the postgres service
 
-```docker
+```bash
 docker-compose exec postgres bash /scripts/initdb.sh
 ```
 
@@ -49,7 +49,7 @@ docker-compose exec postgres bash /scripts/initdb.sh
 
 > manage docker artifacts
 
-```docker
+```bash
 # list all running docker containers
 docker ps -a
 
@@ -60,13 +60,13 @@ docker image prune -a -f
 
 > build an image in a directory with ``Dockerfile``
 
-```docker
+```bash
 docker build --tag=oceanebelle/image .
 ```
 
 > inspecting a built container, by running interactive bash
 
-```docker
+```bash
 # interactive bash
 docker run -it --rm -P --name test_image --entrypoint bash oceanebelle/openjdk
 ```
@@ -75,7 +75,7 @@ docker run -it --rm -P --name test_image --entrypoint bash oceanebelle/openjdk
 
 > Enable experimental option to use buildx
 
-```docker
+```bash
 # In ~/.docker/config.json
 {
         "experimental": "enabled",
@@ -85,7 +85,7 @@ docker run -it --rm -P --name test_image --entrypoint bash oceanebelle/openjdk
 
 > Setup docker builder and buildx
 
-```docker
+```bash
 # list all context
 docker context ls
 # list all the context available

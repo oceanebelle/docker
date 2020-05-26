@@ -1,6 +1,5 @@
-FROM ubuntu:18.04
-
-FROM oceanebelle/openjdk
+ARG TAG=latest
+FROM oceanebelle/openjdk:$TAG
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION=19.0.0.Final \
