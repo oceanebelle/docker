@@ -13,3 +13,12 @@
 
 Building a custom image for zookeeper
 
+
+## Zookeeper recipes
+
+1. Name Server
+2. Configuration
+3. Group Membership (via Sequence|Ephemeral)
+
+Other recipes: https://zookeeper.apache.org/doc/r3.4.3/recipes.html
+
