@@ -6,8 +6,10 @@ services:
     build:
       context: .
     restart: on-failure    
+    environment:
+      - ZOO_LOG4J_PROP=INFO,CONSOLE,ROLLINGFILE
     volumes:
-      - ${PWD}/conf:/opt/apache/zookeeper/conf
+      - ${PWD}/conf/zoo.cfg:/opt/apache/zookeeper/conf/zoo.cfg
       - ${PWD}/logs:/opt/apache/zookeeper/logs
     ports:
       - 2181:2181
