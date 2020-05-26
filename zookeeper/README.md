@@ -18,7 +18,7 @@ Building a custom image for zookeeper
 
 1. Name Server
 2. Configuration
-3. Group Membership (via Sequence|Ephemeral)
+3. Group Membership (via Sequence|Ephemeral flags)
 
 Other recipes: https://zookeeper.apache.org/doc/r3.4.3/recipes.html
 
