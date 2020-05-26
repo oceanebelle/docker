@@ -15,7 +15,8 @@ ENV ZOO_CONF_DIR=${ZOO_HOME}/conf \
     ZOO_AUTOPURGE_SNAPRETAINCOUNT=3 \
     ZOO_MAX_CLIENT_CNXNS=60 \
     ZOO_STANDALONE_ENABLED=true \
-    ZOO_ADMINSERVER_ENABLED=true
+    ZOO_ADMINSERVER_ENABLED=true \
+    ZOO_LOG4J_PROP=INFO,CONSOLE,ROLLINGFILE
 
 # Add a user with an explicit UID/GID and create necessary directories
 RUN set -eux; \
@@ -57,7 +58,7 @@ RUN set -eux; \
 RUN mkdir -p "${ZOO_DATA_DIR}" "${ZOO_DATA_LOG_DIR}" "${ZOO_LOG_DIR}"; \
     chown -R zookeeper:zookeeper "${ZOO_HOME}"
 
-WORKDIR $ZOO_HOME
+
 
 EXPOSE \ 
     2181 \
@@ -65,11 +66,14 @@ EXPOSE \
     3888 \
     8080
 
+USER zookeeper
+WORKDIR $ZOO_HOME
+
 ENV PATH=$PATH:$ZOO_HOME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
 VOLUME ["${ZOO_CONF_DIR}", "${ZOO_DATA_DIR}", "${ZOO_DATA_LOG_DIR}", "${ZOO_LOG_DIR}"]    
-USER zookeeper
+
 COPY docker-entrypoint.sh /docker-entrypoint-zookeeper.sh
 ENTRYPOINT ["/docker-entrypoint-zookeeper.sh"]
 CMD ["zkServer.sh", "start-foreground"]

@@ -4,12 +4,13 @@ services:
   zookeeper:
     container_name: zookeeper-messaging
     image: "oceanebelle/zookeeper:${DOCKER_TAG}"
-    restart: on-failure    
+    restart: on-failure
     volumes:
-      - ${PWD}/conf/zoo.cfg:/opt/apache/zookeeper/conf/zoo.cfg
+      - ${PWD}/config/zookeeper/zoo.cfg:/opt/apache/zookeeper/conf/zoo.cfg      
+      - ${PWD}/config/zookeeper/log4j.properties:/opt/apache/zookeeper/conf/log4j.properties
+      - ${PWD}/logs/zookeeper:/opt/apache/zookeeper/logs
       - ${PWD}/.zk_data:/opt/apache/zookeeper/data
       - ${PWD}/.zk_data_log:/opt/apache/zookeeper/datalog
-      - ${PWD}/logs:/opt/apache/zookeeper/logs
     ports:
       - 2181:2181
       - 2888:2888 
@@ -19,10 +20,14 @@ services:
   kafka:
     container_name: kafka-messaging
     image: "oceanebelle/kafka:${DOCKER_TAG}"    
+    depends_on: 
+      - zookeeper
     restart: on-failure
     volumes:
-      - ${PWD}/scripts:/opt/apache/kafka/config
+      - ${PWD}/config/kafka/server.properties:/opt/apache/kafka/config/server.properties
+      - ${PWD}/config/kafka/log4j.properties:/opt/apache/kafka/config/log4j.properties
       - ${PWD}/.kafka-data:/opt/apache/kafka/kafka-data
-      - ${PWD}/logs:/opt/apache/kafka/logs    
+      - ${PWD}/logs/kafka:/opt/apache/kafka/logs    
     ports:
       - 9092:9092
+
