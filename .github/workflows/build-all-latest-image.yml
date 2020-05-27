@@ -13,6 +13,9 @@ on:
     paths: 
     - '**/workflows/**/build-all-latest-image.yml'
 
+  schedule:
+    - cron: '0 0 * * SAT'  
+
 
 jobs:
 
