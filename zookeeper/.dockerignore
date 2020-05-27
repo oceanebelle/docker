@@ -1,0 +1,4 @@
+.kafka-data
+.zk_data
+.zk_data_log
+logs
