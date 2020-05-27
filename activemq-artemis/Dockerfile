@@ -5,10 +5,12 @@ ENV \
   ARTEMIS_USER=artemis \
   ARTEMIS_PASS=artemis \
   ANONYMOUS_LOGIN=False \
-  ARTEMIS_VERSION="2.12.0" 
+  ARTEMIS_VERSION="2.13.0" \
+  ARTEMIS_ROOT="/opt/activemq" \
+  ARTEMIS_SHORT_DISTRO="activemq-artemis" 
 ENV \
-  ARTEMIS="apache-artemis-$ARTEMIS_VERSION" \
-  ARTEMIS_HOME="/opt/activemq-artemis" \
+  ARTEMIS_DISTRO="apache-artemis-$ARTEMIS_VERSION" \
+  ARTEMIS_HOME="${ARTEMIS_ROOT}/activemq-artemis" \
   ARTEMIS_INSTANCE_DIR="/var/lib/artemis-instance" \
   CREATE_ARGUMENTS="--user ${ARTEMIS_USER} --password ${ARTEMIS_PASS} --allow-anonymous ${ANONYMOUS_LOGIN} --silent --http-host 0.0.0.0 --relax-jolokia"
 
@@ -16,16 +18,33 @@ ENV \
 RUN set -eux; \ 
     groupadd -r artemis --gid=1000; \
     useradd -r -g artemis --uid=1000 artemis; \
-    mkdir -p "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log";  \
-    chown artemis:artemis "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log"
+    mkdir -p "${ARTEMIS_ROOT}" "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log";  \
+    chown artemis:artemis "$ARTEMIS_ROOT" "$ARTEMIS_INSTANCE_DIR" "$ARTEMIS_INSTANCE_DIR/etc" "$ARTEMIS_INSTANCE_DIR/log"
 
-# Download Artemis
+# Download Artemis from main download page or from archive mirrors of apache
 RUN set -eux; \
-    mkdir -p /opt ; \
-    curl -s -S  http://apache.mirror.anlx.net/activemq/activemq-artemis/${ARTEMIS_VERSION}/apache-artemis-${ARTEMIS_VERSION}-bin.tar.gz | tar -xz -C /opt ; \
-    ln -fs /opt/${ARTEMIS} ${ARTEMIS_HOME}; \
-    chown artemis:artemis "/opt/$ARTEMIS"; \ 
-    chown artemis:artemis "$ARTEMIS_HOME"
+    ddist() { \
+        local f="$1"; shift; \
+        local distFile="$1"; shift; \
+        local success=; \
+        local distUrl=; \
+        for distUrl in \
+            'https://www.apache.org/dyn/closer.cgi?action=download&filename=' \
+            https://www-us.apache.org/dist/ \
+            https://archive.apache.org/dist/ \
+            https://www.apache.org/dist/ \
+        ; do \
+            if wget -q -O "$f" "$distUrl$distFile" && [ -s "$f" ]; then \
+                success=1; \
+                break; \
+            fi; \
+        done; \
+        [ -n "$success" ]; \
+    }; \
+    ddist "$ARTEMIS_DISTRO.tar.gz" "activemq/$ARTEMIS_SHORT_DISTRO/${ARTEMIS_VERSION}/$ARTEMIS_DISTRO-bin.tar.gz"; \
+    tar -zxf "$ARTEMIS_DISTRO.tar.gz" -C ${ARTEMIS_ROOT} ; \
+    mv ${ARTEMIS_ROOT}/${ARTEMIS_DISTRO} ${ARTEMIS_HOME}; \    
+    chown -R artemis:artemis "$ARTEMIS_HOME"
 
 EXPOSE \
 # Web server
