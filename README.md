@@ -121,3 +121,15 @@ nc -v -w5 -z localhost 2375
 ## Raspberry pi troubleshooting
 
 Check that rapsberry pi has enough power, otherwise random session disconnects while doing intensive work such as when buildx is running on raspberry pi.
+
+## Git command helpers
+
+```Shell
+git checkout mybranch && git pull
+
+# If returns the my branch, then my branch is up to date
+git branch --contains $(git rev-parse origin/master) | grep $(git rev-parse --abbrev-ref HEAD)
+
+# updating my branch with master
+git merge origin/master --no-ff
+```
