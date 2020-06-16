@@ -8,6 +8,7 @@ on:
     - '**/workflows/**/build-zookeeper.yml'
     - '!**.svg'
     - '!**.md'
+    - '!zookeeper/build-docker-image*.sh'
 
 jobs:
 

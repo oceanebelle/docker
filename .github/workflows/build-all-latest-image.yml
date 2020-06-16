@@ -7,6 +7,7 @@ on:
     - '**'  
     - '!**.svg'
     - '!**.md'
+    - '!**/build-docker-image*.sh'
 
   pull_request:
     branches: [ master ]

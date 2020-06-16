@@ -8,6 +8,7 @@ on:
     - '**/workflows/**/build-kafka.yml'
     - '!**.svg'
     - '!**.md'
+    - '!kafka/build-docker-image*.sh'
 
 jobs:
 

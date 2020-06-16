@@ -8,6 +8,7 @@ on:
     - '**/workflows/**/build-activemq-artemis.yml'
     - '!**.svg'
     - '!**.md'
+    - '!activemq-artemis/build-docker-image*.sh'
 
 jobs:
 
