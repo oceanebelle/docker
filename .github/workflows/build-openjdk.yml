@@ -8,6 +8,7 @@ on:
     - '**/workflows/**/build-openjdk.yml'
     - '!**.svg'
     - '!**.md'
+    - '!openjdk/build-docker-image*.sh'
 
 jobs:
 

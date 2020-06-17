@@ -22,3 +22,19 @@ Building a custom image for zookeeper
 
 Other recipes: https://zookeeper.apache.org/doc/r3.4.3/recipes.html
 
+## docker-compose commands
+
+```bash
+# Quick stop, rm, start and then connect via exec bash
+docker-compose stop && docker-compose rm -f &&  docker-compose up -d && docker-compose exec zookeeper bash
+
+# Use exec command to execute scripts against the postgres service
+docker-compose exec zookeeper bash
+```
+
+## zookeeper location
+
+Endpoint for admin service of zookeeper
+
+    http://localhost:8080/commands
+

@@ -8,7 +8,10 @@ services:
     restart: on-failure    
     volumes:
       - ${PWD}/conf/zoo.cfg:/opt/apache/zookeeper/conf/zoo.cfg
+      - ${PWD}/conf/log4j.properties:/opt/apache/zookeeper/conf/log4j.properties
       - ${PWD}/logs:/opt/apache/zookeeper/logs
+      - ${PWD}/.data/data:/opt/apache/zookeeper/data
+      - ${PWD}/.data/datalog:/opt/apache/zookeeper/datalog
     ports:
       - 2181:2181
       - 2888:2888 
