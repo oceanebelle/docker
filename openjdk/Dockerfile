@@ -40,8 +40,6 @@ RUN set eux; \
 
 RUN echo "Building image for $TAG using adoptopenjdk/$JDK_VERSION:$JDK_TAG on ubuntu/$UBUNTU_VERSION" > $APP_LOG/build-jdk.out    
 
-VOLUME ["$APP_HOME", "${APP_LOG}", "${APP_LIB}"]
-
 COPY ./docker-entrypoint.sh /docker-entrypoint-javaapp.sh
 
 # Default command when run
