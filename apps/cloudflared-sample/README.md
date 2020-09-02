@@ -15,15 +15,16 @@ $ wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 # Install cloudflared (for debian)
 $ sudo apt install ./cloudflared-stable-linux-amd64.deb 
 
-# Login to Cloudflare to generate cert.pem. Copy cert.pm into this directory
+# Login to Cloudflare to generate cert.pem. Copy cert.pem into this directory
 $ cloudflared tunnel login
 
-# Modify config.yaml for details of the tunnel like fqdn
+# Modify config.yaml for details of the tunnel like fqdn hostname
 
 
 # Build the docker image
 $ docker build --tag=oceanebelle/cloudflared-sample .
-# or use docker-compose
+
+# Or use docker-compose
 $ docker-compose up -d && docker-compose logs -f cfd-sample
 # stop docker-compose
 $ docker-compose stop && docker-compose rm -f
@@ -31,8 +32,8 @@ $ docker-compose stop && docker-compose rm -f
 
 ## Options for running
 ```bash
-# 1. start the dockerized cloudflared flask app. Requires bundling the creds into image. not recommended.
-$ docker run -it --rm oceanebelle/cloudflared-sample
+# 1. start the dockerized cloudflared flask app. mount the cert.pem generated from the cloudflare tunnel login
+$ docker run -it --rm -v `pwd`/cert.pem:/etc/cloudflared/cert.pem oceanebelle/cloudflared-sample
 
 # 2. Start server.py and cloudflared directly for local development on domain configured for the argo tunnel
 $ pip3 install waitress flask
