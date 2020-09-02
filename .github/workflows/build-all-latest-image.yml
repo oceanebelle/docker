@@ -8,10 +8,12 @@ on:
     - '!**.svg'
     - '!**.md'
     - '!**/build-docker-image*.sh'
+    - '!apps/**'
 
   pull_request:
     branches: [ master ]
     paths: 
+    - '!apps/**'
     - '**/workflows/**/build-all-latest-image.yml'
 
   schedule:
