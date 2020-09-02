@@ -20,13 +20,18 @@ cloudflared tunnel login
 
 # Modify config.yaml for details of the tunnel like fqdn
 
+
 # Build the docker image
 docker build --tag=oceanebelle/cloudflared-sample .
+# or use docker-compose
+docker-compose up -d && docker-compose logs -f cfd-sample
+# stop docker-compose
+docker-compose stop && docker-compose rm -f
 ```
 
 ## Options for running
-```
-# 1. start the dockerized cloudflared flask app
+```bash
+# 1. start the dockerized cloudflared flask app. Requires bundling the creds into image. not recommended.
 docker run -it --rm oceanebelle/cloudflared-sample
 
 # 2. Start server.py and cloudflared directly for development
@@ -34,7 +39,8 @@ pip3 install flask
 python3 server.py
 cloudflared tunnel --url localhost:8080 --hostname cfd-sample.oceanebelle.com
 
-
+# 3. Start using docker-compose which includes volume mapping for external certifcate
+docker-compose up
 
 ```
 Browse to https://cfd-sample.oceanebelle.com

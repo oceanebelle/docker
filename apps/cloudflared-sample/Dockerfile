@@ -16,7 +16,8 @@ COPY supervisord.conf /etc/supervisord.conf
 RUN apt-get install -y wget 
 RUN wget -q -O- https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.tgz | tar xz 
 RUN mkdir -p /etc/cloudflared/ 
-COPY cert.pem /etc/cloudflared/ 
+# This file is not copied into the image. Instead this is mapped as a volume
+#COPY cert.pem /etc/cloudflared/ 
 COPY config.yaml /etc/cloudflared/
 
 # Python and Flask

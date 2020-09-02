@@ -1,0 +1,10 @@
+version: "3.4"
+services:
+  cfd-sample:
+    image: oceanebelle/cloudflared-sample:latest
+    build: 
+      context: .    
+    volumes:
+      - ./cert.pem:/etc/cloudflared/cert.pem        
+      - ./config.yaml:/etc/cloudflared/config.yaml
+
