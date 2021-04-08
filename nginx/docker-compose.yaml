@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nginx:
+    image: nginx        
+    ports:
+      - 8080:80
+      - 8090:8090
+      
+    volumes:
+      - ${PWD}/myconf.conf:/etc/nginx/conf.d/myconf.conf
